@@ -35,8 +35,7 @@ public class PlayerBehaviour : MonoBehaviour
     private void _Move()
     {//if (//GameIsStarted)
         {
-            if (isGrounded)
-        {
+            
             if (Input.GetAxisRaw("Horizontal") > 0.0f)
             {
                 // move right
@@ -64,14 +63,14 @@ public class PlayerBehaviour : MonoBehaviour
             body.velocity = Vector3.Lerp(body.velocity, Vector3.zero, 0.9f);
             body.velocity = new Vector3(body.velocity.x, 0.0f, body.velocity.z); // remove y
             
-
-            if (Input.GetAxisRaw("Jump") > 0.0f)
+            if (isGrounded)
+            {
+                if (Input.GetAxisRaw("Jump") > 0.0f)
             {
                 body.velocity += transform.up * speed * 0.1f * Time.deltaTime;
             }
-
+            }
             transform.position += body.velocity;
-        }
         }
     }
 
